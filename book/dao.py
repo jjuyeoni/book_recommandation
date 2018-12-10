@@ -14,7 +14,8 @@ def selectBookbytitle(title):
     cursor.execute(query_string)
     rows = cursor.fetchall()
     for row in rows :
-        book = {'id':row[0], 'image':row[1], 'url':row[3]}
+        book = {'id':row[0], 'author_intro':row[2], 'authors':row[3], 'bibli':row[4], 'book_intro':row[5], 'cats':row[6], 'corp':row[7],
+        'maker_review':row[8], 'description':row[10], 'image':row[11], 'url':row[14]}
     return book
 
 def selectBookbyid(id):
@@ -23,7 +24,7 @@ def selectBookbyid(id):
     cursor.execute(query_string)
     rows = cursor.fetchall()
     for row in rows :
-        book = {'id':row[0] , 'image':row[1], 'title':row[2], 'url':row[3]}
+        book = {'id':row[0] , 'image':row[11], 'title':row[13], 'url':row[14]}
     return book
 
 def selectResultBook(id):
@@ -32,7 +33,7 @@ def selectResultBook(id):
     cursor.execute(query_string)
     rows = cursor.fetchall()
     for row in rows :
-        book = {'image':row[1], 'title':row[2]}
+        book = {'image':row[11], 'title':row[13]}
     return book
 
 def selectSearchBook(title):

@@ -297,12 +297,9 @@ def mybook(request, num):
     return redirect(b_search)
 
 def detail(request, title):
-    book = dao.selectBookbytitle(title)
-    data = parseContent(book['url'], title)
-    data['image'] = book['image']
-    data['id'] = book['id']
+    data = dao.selectBookbytitle(title)
     ganglist = gangnam(title)
-    check = dao.checkBlike(book['id'], request.user.id)
+    check = dao.checkBlike(data['id'], request.user.id)
     return render(request, 'book/detail.html', {'data':data, 'ganglist':ganglist, 'check':check})
 
 #책검색

@@ -125,12 +125,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mysite',
-        'USER': 'user',
+        'USER': 'root',
         'PASSWORD': 'password',
         'HOST': 'localhost',
-        'PORT': '62084',
+        'PORT': '3306',
         'OPTIONS': {
-            'charset':'utf8mb4',  # <--- Use this
+            'charset':'utf8mb4',
             # 'use_unsicode':'true'
         }
     }
