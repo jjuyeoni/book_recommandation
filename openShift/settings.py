@@ -124,11 +124,11 @@ AUTHENTICATION_BACKENDS = (
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mysite',
-        'USER': 'root',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'NAME': 'cwa302',
+        'USER': 'cwa302',
+        'PASSWORD': '20141124',
+        'HOST': 'auriga.dongduk.ac.kr',
+        'PORT': '3389',
         'OPTIONS': {
             'charset':'utf8mb4',
             # 'use_unsicode':'true'
