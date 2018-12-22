@@ -13,9 +13,9 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import os
 import json
 from django.core.exceptions import ImproperlyConfigured
-import pymysql
+#import pymysql
 
-pymysql.install_as_MySQLdb()
+#pymysql.install_as_MySQLdb()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -123,12 +123,12 @@ AUTHENTICATION_BACKENDS = (
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'cwa302',
-        'USER': 'cwa302',
-        'PASSWORD': '20141124',
-        'HOST': 'auriga.dongduk.ac.kr',
-        'PORT': '3389',
+       'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'cwa302',  #mysql
+        'USER': 'cwa302', #root
+        'PASSWORD': '20141124', #1234
+        'HOST': 'auriga.dongduk.ac.kr', #공백으로 냅두면 default localhost
+        'PORT': '3389', #공백으로 냅두면 default 3306
         'OPTIONS': {
             'charset':'utf8mb4',
             # 'use_unsicode':'true'
