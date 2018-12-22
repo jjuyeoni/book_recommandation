@@ -127,8 +127,8 @@ DATABASES = {
         'NAME': 'cwa302',  #mysql
         'USER': 'cwa302', #root
         'PASSWORD': '20141124', #1234
-        'HOST': 'auriga.dongduk.ac.kr', #공백으로 냅두면 default localhost
-        'PORT': '3389', #공백으로 냅두면 default 3306
+        'HOST': 'localhost', #공백으로 냅두면 default localhost
+        'PORT': '3306', #공백으로 냅두면 default 3306
         'OPTIONS': {
             'charset':'utf8mb4',
             # 'use_unsicode':'true'
