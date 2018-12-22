@@ -14,15 +14,15 @@ from django.http import HttpResponse
 import urllib.parse
 from user import dao as udao
 
-####
-from wordcloud import WordCloud, STOPWORDS
-from konlpy.tag import Twitter; t = Twitter()
-import nltk
-import matplotlib.pyplot as plt
-import sys
-from PIL import Image
-import os
-####
+#####
+#from wordcloud import WordCloud, STOPWORDS
+#from konlpy.tag import Twitter; t = Twitter()
+#import nltk
+#import matplotlib.pyplot as plt
+#import sys
+#from PIL import Image
+#import os
+#####
 
 #Wordcloud용 크롤러
 def parseContentLike(url):
@@ -57,32 +57,32 @@ def parseContentLike(url):
 
 #Wordcloud함수
 
-def Cloud(uid, fname):
-    b_id = udao.selectBlike(uid)
-    print("bid", b_id)
-    bList=[]
-    for i in b_id:
-        bList.append(dao.selectTitleBook(i))
-    data =''
-    print("blist", bList[0])
-    for b in bList:
-        data += " " + parseContentLike(b)
-    mask = np.array(Image.open("book/static/img/book_bg.jpg"))
-    tokens_ko = t.nouns(data)
-    ko = nltk.Text(tokens_ko, name='wcc')
-    stop_words = ['.', '(', ')', ',', "'", '%', '-', 'X', ').', '×','의','자','에','안','번','호','을','이','다','만','로','가',
-    '를','나','그', '이다', '준', '이', '것', '호', '과연', '수', '게', '개', '설', '때', '책', '주로', '저자', '작가', '더', '도', '듯', '반', '왜', '줄','고',
-    '봐', '천', '뭐', '때문','함', '세']
-    ko = [each_word for each_word in ko if each_word not in stop_words]
-    ko = nltk.Text(ko, name='wcc')
-    data = ko.vocab().most_common(100)
-    wordcloud = WordCloud(font_path='book/NotoSansKR-Regular.otf',relative_scaling = 0.2,background_color='white',mask=mask,margin=7,).generate_from_frequencies(dict(data))
-    plt.figure(figsize=(12,8))
-    plt.imshow(wordcloud)
-    plt.axis("off")
-    fig1 = plt.gcf()
-    name = "book"+ str(fname)
-    fig1.savefig(name, dpi=100)
+#def Cloud(uid, fname):
+#    b_id = udao.selectBlike(uid)
+#    print("bid", b_id)
+#    bList=[]
+#    for i in b_id:
+#        bList.append(dao.selectTitleBook(i))
+#    data =''
+#    print("blist", bList[0])
+#    for b in bList:
+#        data += " " + parseContentLike(b)
+#    mask = np.array(Image.open("book/static/img/book_bg.jpg"))
+#    tokens_ko = t.nouns(data)
+#    ko = nltk.Text(tokens_ko, name='wcc')
+#    stop_words = ['.', '(', ')', ',', "'", '%', '-', 'X', ').', '×','의','자','에','안','번','호','을','이','다','만','로','가',
+#    '를','나','그', '이다', '준', '이', '것', '호', '과연', '수', '게', '개', '설', '때', '책', '주로', '저자', '작가', '더', '도', '듯', '반', '왜', '줄','고',
+#    '봐', '천', '뭐', '때문','함', '세']
+#    ko = [each_word for each_word in ko if each_word not in stop_words]
+#    ko = nltk.Text(ko, name='wcc')
+#    data = ko.vocab().most_common(100)
+#    wordcloud = WordCloud(font_path='book/NotoSansKR-Regular.otf',relative_scaling = 0.2,background_color='white',mask=mask,margin=7,).generate_from_frequencies(dict(data))
+#    plt.figure(figsize=(12,8))
+#    plt.imshow(wordcloud)
+#    plt.axis("off")
+#    fig1 = plt.gcf()
+#    name = "book"+ str(fname)
+#    fig1.savefig(name, dpi=100)
 
 # bestseller crawling
 def bestSeller():
@@ -285,15 +285,15 @@ def mybook(request, num):
     if check == 0 :
         b = Blike(u = request.user, b_id = num)
         b.save()
-    l_id = dao.selectLikeId(num)
-    uid = request.user.id
-    name = str(l_id) + '_' + str(uid) + ".png"
-    if l_id > 0:
-        isFile = "book/static/img/" + str(l_id - 1) + '_' + str(uid) + ".png"
-        if os.path.isfile(isFile):
-            os.remove(isFile)
-    fname = "/static/img/" + name
-    Cloud(uid, fname)
+#    l_id = dao.selectLikeId(num)
+#    uid = request.user.id
+#    name = str(l_id) + '_' + str(uid) + ".png"
+#    if l_id > 0:
+#        isFile = "book/static/img/" + str(l_id - 1) + '_' + str(uid) + ".png"
+#        if os.path.isfile(isFile):
+#            os.remove(isFile)
+#    fname = "/static/img/" + name
+#    Cloud(uid, fname)
     return redirect(b_search)
 
 def detail(request, title):
