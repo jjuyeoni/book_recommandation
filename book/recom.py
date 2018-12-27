@@ -13,10 +13,10 @@ import requests
 def get_book_info(q) :
     url = "https://dapi.kakao.com/v3/search/book?target=title&query="+q
     headers = {'Authorization': 'KakaoAK {}'.format('f86dda3153f74c45aca17bcedb68987b')}
-
     try:
         res = requests.get(url, headers=headers)
         return res.json()
+
     except Exception as e:
         print(str(e))
         sys.exit(0)
@@ -59,10 +59,9 @@ def tfidfvectorizerContents(data, max_dfv=0.8,max_featuresv=1000,min_dfv=0.02 ):
     return tfidf_matrix
 
 #유사도 분석 함수
-def similar_recommend(booklens_id):
+def similar_recommend(booklens_id, bookList):
     result = []
-    # s = np.load('book/matrix/story_matrix.npy')
-    # s = np.asmatrix(s)
+
     tfidf_matrix = tfidfvectorizerContents(bookList)
     book_sim = cosine_similarity(tfidf_matrix)
 

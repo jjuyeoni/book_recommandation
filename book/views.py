@@ -90,12 +90,17 @@ def search(request):
         title = request.POST['title']
         bookid = dao.selectBook(title)
         if bookid == False :
-            # crawler.parseContent()
-            return render(request, 'book/error.html')
-        recom = recom.similar_books(bookid)
+            bookIDDF = recom.get_book_info('title')
+            bookIDDF = pd.DataFrame(bookIDDF['documents'][0])
+
+            bookid = dao.insertNewBook(bookIDDF)
+
+            # return render(request, 'book/error.html')
+        bookList = dao.selectBookAll()
+        recom_book = recom.similar_recommend(bookid, bookList)
 
         recom_result = []
-        for i in recom:
+        for i in recom_book:
             recom_result.append(dao.selectResultBook(str(i+1)))
 
         return render(request, 'book/search.html', {'cont':recom_result})
