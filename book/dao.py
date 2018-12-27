@@ -89,7 +89,8 @@ def selectBookAll():
     query_string = "SELECT * FROM book_data;"
     cursor.execute(query_string)
     rows = cursor.fetchall()
+    book=[]
     for row in rows :
-        book = {'id':row[0], 'author_intro':row[2], 'authors':row[3], 'bibli':row[4], 'book_intro':row[5], 'cats':row[6], 'corp':row[7],
-        'maker_review':row[8], 'description':row[10], 'image':row[11], 'url':row[14]}
+        book.append({'id':row[0], 'author_intro':row[2], 'authors':row[3], 'bibli':row[4], 'book_intro':row[5], 'cats':row[6], 'corp':row[7],
+        'maker_review':row[8], 'description':row[10], 'image':row[11], 'url':row[14]})
     return book

@@ -33,8 +33,8 @@ def tfidfvectorizerContents(data, max_dfv=0.8,max_featuresv=1000,min_dfv=0.02 ):
     twitter = Twitter()
 
     corpus = []
-    glued_list = ['author_intro', 'cats', 'maker_review', 'more_contents', 'og:description', 'og:title']
-    for i in range(len(bookList)):
+    glued_list = ['author_intro', 'cats', 'maker_review', 'more_contents', 'description', 'title']
+    for i in range(len(data)):
         document = ''
         try :
             k = data.loc[i]

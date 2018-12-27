@@ -4,6 +4,7 @@ from book.models import *
 from django.conf import settings
 from . import crawler
 from . import recom
+import pandas as pd
 
 #####
 #from wordcloud import WordCloud, STOPWORDS
@@ -97,6 +98,7 @@ def search(request):
 
             # return render(request, 'book/error.html')
         bookList = dao.selectBookAll()
+        # bookList = pd.DataFrame(bookList)
         recom_book = recom.similar_recommend(bookid, bookList)
 
         recom_result = []
