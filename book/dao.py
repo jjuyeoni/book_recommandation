@@ -5,6 +5,8 @@ def selectBook(title):
     query_string = "SELECT id FROM book_data where title = \'" + title + "\';"
     cursor.execute(query_string)
     rows = cursor.fetchall()
+    if not rows :
+        return False;
     book = rows[0]
     return book
 

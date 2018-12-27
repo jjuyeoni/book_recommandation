@@ -270,6 +270,8 @@ def search(request):
     if request.method == 'POST' :
         title = request.POST['title']
         bookid = dao.selectBook(title)
+        if bookid == False :
+            return render(request, 'book/error.html')
         cats = similar_recommend_by_cats(bookid)
         cont = similar_recommend_by_content(bookid)
         cats_result = []
@@ -278,6 +280,7 @@ def search(request):
         cont_result = []
         for i in cont:
             cont_result.append(dao.selectResultBook(str(i+1)))
+
         return render(request, 'book/search.html', {'cats':cats_result, 'cont':cont_result})
 
 def mybook(request, num):
