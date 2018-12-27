@@ -124,6 +124,7 @@ def search(request):
         title = request.POST['title']
         bookid = dao.selectBook(title)
         if bookid == False :
+            # crawler.parseContent()
             return render(request, 'book/error.html')
         cats = similar_recommend_by_cats(bookid)
         cont = similar_recommend_by_content(bookid)
