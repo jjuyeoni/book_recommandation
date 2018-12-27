@@ -3,11 +3,9 @@ from book.models import *
 from bs4 import BeautifulSoup as bs
 from urllib.request import urlopen
 import pandas as pd
-from sklearn.metrics.pairwise import cosine_similarity
-import numpy as np
 import re
-import html5lib
-from django.http import HttpResponse
+# import html5lib
+# from django.http import HttpResponse
 import urllib.parse
 
 # bestseller crawling

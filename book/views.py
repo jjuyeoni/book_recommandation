@@ -75,38 +75,6 @@ from . import recom
 #    name = "book"+ str(fname)
 #    fig1.savefig(name, dpi=100)
 
-# recommendation with vetorized category
-# def similar_recommend_by_cats(booklens_id):
-#     result = []
-#     s = np.load('book/matrix/cats_matrix.npy')
-#     s = np.asmatrix(s)
-#     book_sim = cosine_similarity(s)
-#
-#     book_index = booklens_id
-#     similar_books = sorted(list(enumerate(book_sim[book_index])),key=lambda x:x[1], reverse=True)
-#     recommended=1
-#
-#     for book_info in similar_books[1:5]:
-#         recommended+=1
-#         result.append(book_info[0])
-#     return result
-#
-# # recommendation with vetorized content
-# def similar_recommend_by_content(booklens_id):
-#     result = []
-#     s = np.load('book/matrix/story_matrix.npy')
-#     s = np.asmatrix(s)
-#     book_sim = cosine_similarity(s)
-#
-#     book_index = booklens_id
-#     similar_books = sorted(list(enumerate(book_sim[book_index])),key=lambda x:x[1], reverse=True)
-#     recommended=1
-#
-#     for book_info in similar_books[1:5]:
-#         recommended+=1
-#         result.append(book_info[0])
-#     return result
-
 
 # Create your views here.
 def book_list(request):

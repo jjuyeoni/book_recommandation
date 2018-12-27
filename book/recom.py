@@ -1,3 +1,13 @@
+from sklearn.metrics.pairwise import cosine_similarity
+import pandas as pd
+import re
+import validators
+import sys
+from sklearn.feature_extraction.text import TfidfVectorizer
+import numpy as np
+from konlpy.tag import Twitter
+from nltk.corpus import stopwords
+import requests
 
 # kakao 책검색
 def get_book_info(q) :
