@@ -1,11 +1,8 @@
 from book.models import *
-
 from bs4 import BeautifulSoup as bs
 from urllib.request import urlopen
 import pandas as pd
 import re
-# import html5lib
-# from django.http import HttpResponse
 import urllib.parse
 
 # bestseller crawling

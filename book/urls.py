@@ -6,7 +6,4 @@ urlpatterns = [
     path('search', views.search, name='search'),
     path('mybook/<num>', views.mybook, name='mybook'),
     path('detail/<title>', views.detail, name='detail'),
-    path('b_search', views.b_search, name='b_search'),
-
-    path('bAjax', views.bAjax, name='bs'),
 ]

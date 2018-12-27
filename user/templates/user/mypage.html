@@ -143,8 +143,8 @@
       if (navigator.geolocation) {
          // GeoLocation을 이용해서 접속 위치를 얻어옵니다
         navigator.geolocation.getCurrentPosition(function(position) {
-            var lat = 37.495482, // 위도
-                lon = 127.03874100000007; // 경도
+            var lat = position.coords.latitude, // 위도
+                lon = position.coords.longitude; // 경도
 
             locPosition = new daum.maps.LatLng(lat, lon);
              map.setCenter(locPosition);
