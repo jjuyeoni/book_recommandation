@@ -49,7 +49,7 @@ def tfidfvectorizerContents(data, max_dfv=0.8,max_featuresv=1000,min_dfv=0.02 ):
     return tfidf_matrix
 
 #유사도 분석 함수
-def similar_recommend_by_content(booklens_id):
+def similar_recommend(booklens_id):
     result = []
     # s = np.load('book/matrix/story_matrix.npy')
     # s = np.asmatrix(s)

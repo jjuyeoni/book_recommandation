@@ -3,9 +3,7 @@ from . import dao
 from book.models import *
 from django.conf import settings
 from . import crawler
-
-from sklearn.metrics.pairwise import cosine_similarity
-import numpy as np
+from . import recom
 
 #####
 #from wordcloud import WordCloud, STOPWORDS
@@ -78,36 +76,36 @@ import numpy as np
 #    fig1.savefig(name, dpi=100)
 
 # recommendation with vetorized category
-def similar_recommend_by_cats(booklens_id):
-    result = []
-    s = np.load('book/matrix/cats_matrix.npy')
-    s = np.asmatrix(s)
-    book_sim = cosine_similarity(s)
-
-    book_index = booklens_id
-    similar_books = sorted(list(enumerate(book_sim[book_index])),key=lambda x:x[1], reverse=True)
-    recommended=1
-
-    for book_info in similar_books[1:5]:
-        recommended+=1
-        result.append(book_info[0])
-    return result
-
-# recommendation with vetorized content
-def similar_recommend_by_content(booklens_id):
-    result = []
-    s = np.load('book/matrix/story_matrix.npy')
-    s = np.asmatrix(s)
-    book_sim = cosine_similarity(s)
-
-    book_index = booklens_id
-    similar_books = sorted(list(enumerate(book_sim[book_index])),key=lambda x:x[1], reverse=True)
-    recommended=1
-
-    for book_info in similar_books[1:5]:
-        recommended+=1
-        result.append(book_info[0])
-    return result
+# def similar_recommend_by_cats(booklens_id):
+#     result = []
+#     s = np.load('book/matrix/cats_matrix.npy')
+#     s = np.asmatrix(s)
+#     book_sim = cosine_similarity(s)
+#
+#     book_index = booklens_id
+#     similar_books = sorted(list(enumerate(book_sim[book_index])),key=lambda x:x[1], reverse=True)
+#     recommended=1
+#
+#     for book_info in similar_books[1:5]:
+#         recommended+=1
+#         result.append(book_info[0])
+#     return result
+#
+# # recommendation with vetorized content
+# def similar_recommend_by_content(booklens_id):
+#     result = []
+#     s = np.load('book/matrix/story_matrix.npy')
+#     s = np.asmatrix(s)
+#     book_sim = cosine_similarity(s)
+#
+#     book_index = booklens_id
+#     similar_books = sorted(list(enumerate(book_sim[book_index])),key=lambda x:x[1], reverse=True)
+#     recommended=1
+#
+#     for book_info in similar_books[1:5]:
+#         recommended+=1
+#         result.append(book_info[0])
+#     return result
 
 
 # Create your views here.
@@ -126,16 +124,13 @@ def search(request):
         if bookid == False :
             # crawler.parseContent()
             return render(request, 'book/error.html')
-        cats = similar_recommend_by_cats(bookid)
-        cont = similar_recommend_by_content(bookid)
-        cats_result = []
-        for i in cats:
-            cats_result.append(dao.selectResultBook(str(i+1)))
-        cont_result = []
-        for i in cont:
-            cont_result.append(dao.selectResultBook(str(i+1)))
+        recom = recom.similar_books(bookid)
 
-        return render(request, 'book/search.html', {'cats':cats_result, 'cont':cont_result})
+        recom_result = []
+        for i in recom:
+            recom_result.append(dao.selectResultBook(str(i+1)))
+
+        return render(request, 'book/search.html', {'cont':recom_result})
 
 def mybook(request, num):
     check = dao.checkBlike(num, request.user.id)
